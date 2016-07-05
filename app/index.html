@@ -1,0 +1,67 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="todolist">
+<head>
+    <!-- META -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" /><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" /><!-- load bootstrap -->
+    <link rel="stylesheet" href="/main.css" />
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="/controllers/maincontroller.js"></script>
+    <script src="/core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h2>Number of todo's <span class="label label-info">{{ todos.length }}</span></h2>
+
+        <!-- FORM TO CREATE TODOS -->
+        <div id="todo-form" class="row top10">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="input-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Enter todo" ng-model="formData.text">
+                        <div class="input-group-addon success" ng-click="createTodo()"><i class="glyphicon glyphicon-plus"></i></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <!-- TODO LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                    <input type="text" class="form-control" placeholder="Search todo" ng-model="searchTodo.text">
+                </div>
+                <!-- LOOP OVER THE TODOS IN $scope.todos only not done -->
+                <div class="checkbox" ng-repeat="todo in results = (todos | orderBy:'done' | filter:searchTodo)">
+                    <label>
+                        <input type="checkbox" ng-click="changeTodo(todo)" ng-model="todo.done"> <span ng-class="{crossed: todo.done}">{{ todo.text }}</span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

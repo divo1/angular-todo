@@ -1,0 +1,25 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    padding-top: 50px;
+}
+
+#todo-list {
+    margin-bottom: 30px;
+}
+
+.crossed {
+    text-decoration: line-through;
+}
+
+.input-group-addon.success {
+    color: rgb(255, 255, 255);
+    background-color: rgb(92, 184, 92);
+    border-color: rgb(76, 174, 76);
+}
+
+.top10 {
+    margin-top: 10px;
+}
